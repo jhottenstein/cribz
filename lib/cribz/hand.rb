@@ -1,4 +1,4 @@
-require 'cribz/card'
+require_relative 'card'
 class Hand
   attr_accessor :cards
   def self.from_array(cards)
@@ -44,7 +44,7 @@ private
     combinations.reduce(:+)
   end
   def total_value_of(combo)
-    total = combo.inject(0) do |memo, card|
+    combo.inject(0) do |memo, card|
       memo + card.value
     end
   end

@@ -1,2 +1,1 @@
-require 'cribz/card'
-require 'cribz/hand'
+require_relative 'cribz/hand'
