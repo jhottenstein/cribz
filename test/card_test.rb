@@ -33,6 +33,21 @@ class CardTest < Test::Unit::TestCase
     card = Card.new("JH")
     assert_equal 10, card.value
   end
+  def test_spaceship
+    card1 = Card.new("AH") 
+    card2 = Card.new("2H") 
+    card3 = Card.new("JH") 
+    card4 = Card.new("JS") 
+    assert_equal -1, card1 <=> card2
+    assert_equal 1, card2 <=> card1
+    assert_equal 0, card3 <=> card4
+  end
+  def test_index
+    assert_equal 1, Card.new("AH").index
+    assert_equal 2, Card.new("2H").index
+    assert_equal 11, Card.new("JH").index
+    assert_equal 11, Card.new("JS").index
+  end 
 
 private
 

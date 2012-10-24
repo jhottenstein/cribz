@@ -8,6 +8,12 @@ class Card
     @rank, @suit = rank_and_suit_matcher[1,2]
   end
   def value
-    [RANKS.index(rank) + 1, 10].min
+    [self.index, 10].min
+  end
+  def <=>(other)
+    self.index <=> other.index
+  end
+  def index
+    RANKS.index(self.rank) + 1
   end
 end
