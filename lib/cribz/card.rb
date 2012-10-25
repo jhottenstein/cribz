@@ -16,4 +16,23 @@ class Card
   def index
     RANKS.index(self.rank) + 1
   end
+  def to_s
+    self.rank + self.suit
+  end
+  def ==(other)
+    self.rank == other.rank && self.suit == other.suit
+  end
+  def Card.deck
+    RANKS.map do |rank|
+      SUITS.map do |suit|
+        Card.new(rank + suit)
+      end
+    end.flatten
+  end
+  def hash
+    (rank+suit).hash
+  end
+  def eql?(other)
+    self == other
+  end
 end

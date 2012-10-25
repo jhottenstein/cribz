@@ -1,5 +1,14 @@
 require_relative 'test_helper'
 class HandTest < Test::Unit::TestCase
+  def test_expected_value
+    hand = Hand.from_array(["AD", "AC", "AH", "AS"])
+    assert_equal 12, hand.expected_value
+  end
+  def test_expected_value_with_seen_cards
+    hand = Hand.from_array(["KD", "KC", "KH", "KS"])
+    seen_cards = ["5D", "5C", "5H", "5S"]
+    assert_equal 12, hand.expected_value(seen_cards)
+  end
   def test_score_19
     hand = Hand.from_array(["8S", "9S", "JH", "QH"])
     starter = Card.new("4S")
@@ -118,5 +127,14 @@ class HandTest < Test::Unit::TestCase
     hand = Hand.from_array(["JH", "2H", "8H", "9H"])
     starter = Card.new("QS")
     assert_equal 4, hand.flush_points(starter)
+  end
+  def test_to_s
+    hand = Hand.from_array(["JH", "2H", "8H", "9H"])
+    assert_equal '[JH, 2H, 8H, 9H]', hand.to_s
+  end
+  def test_equality
+    hand1 = Hand.from_array(["JH", "2H", "8H", "9H"])
+    hand2 = Hand.from_array(["JH", "2H", "8H", "9H"])
+    assert_equal hand1, hand2
   end
 end

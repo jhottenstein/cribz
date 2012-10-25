@@ -3,10 +3,28 @@ class Hand
   attr_accessor :cards
   def self.from_array(cards)
     hand = Hand.new
-    hand.cards = cards.collect do |card|
+    hand.cards = build_card_array(cards)
+    return hand
+  end
+  def self.build_card_array(cards)
+    cards.collect do |card|
       Card.new(card)
     end
-    return hand
+  end
+  def to_s
+    "[#{cards.join ', '}]"
+  end
+  def ==(other)
+    self.cards == other.cards
+  end
+
+  def expected_value(seen_cards = [])
+    seen_cards = Hand.build_card_array(seen_cards)
+    possible_starters = Card.deck - cards - seen_cards
+    results = possible_starters.map do |starter|
+      self.score(starter)
+    end
+    results.reduce(:+) / results.size.to_f
   end
 
   def score(starter)

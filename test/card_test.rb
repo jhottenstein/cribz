@@ -38,9 +38,9 @@ class CardTest < Test::Unit::TestCase
     card2 = Card.new("2H") 
     card3 = Card.new("JH") 
     card4 = Card.new("JS") 
-    assert_equal -1, card1 <=> card2
-    assert_equal 1, card2 <=> card1
-    assert_equal 0, card3 <=> card4
+    assert_equal(-1, card1 <=> card2)
+    assert_equal(1, card2 <=> card1)
+    assert_equal(0, card3 <=> card4)
   end
   def test_index
     assert_equal 1, Card.new("AH").index
@@ -48,6 +48,19 @@ class CardTest < Test::Unit::TestCase
     assert_equal 11, Card.new("JH").index
     assert_equal 11, Card.new("JS").index
   end 
+  
+  def test_to_s
+    assert_equal "AH", Card.new("AH").to_s
+  end
+
+  def test_card_deck
+    assert_equal 52, Card.deck.size
+    assert_equal Card.new("AD"), Card.deck.first
+  end
+
+  def test_hash_and_eql_makes_array_ops_work
+    assert_equal 51, (Card.deck - [Card.new("AD")]).size
+  end
 
 private
 
