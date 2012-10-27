@@ -1,4 +1,4 @@
-require_relative 'test_helper'
+require_relative '../test_helper'
 class HandTest < Test::Unit::TestCase
   def test_expected_value
     hand = Hand.from_array(["AD", "AC", "AH", "AS"])

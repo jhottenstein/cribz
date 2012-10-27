@@ -1,4 +1,4 @@
-require_relative 'test_helper'
+require_relative '../test_helper'
 class CardTest < Test::Unit::TestCase
   def test_new_card
     card = Card.new("AH")
@@ -38,9 +38,11 @@ class CardTest < Test::Unit::TestCase
     card2 = Card.new("2H") 
     card3 = Card.new("JH") 
     card4 = Card.new("JS") 
+    card5 = Card.new("JS") 
     assert_equal(-1, card1 <=> card2)
     assert_equal(1, card2 <=> card1)
-    assert_equal(0, card3 <=> card4)
+    assert_equal(-1, card3 <=> card4)
+    assert_equal(0, card5 <=> card4)
   end
   def test_index
     assert_equal 1, Card.new("AH").index
@@ -55,7 +57,7 @@ class CardTest < Test::Unit::TestCase
 
   def test_card_deck
     assert_equal 52, Card.deck.size
-    assert_equal Card.new("AD"), Card.deck.first
+    assert_equal Card.new("AC"), Card.deck.first
   end
 
   def test_hash_and_eql_makes_array_ops_work
