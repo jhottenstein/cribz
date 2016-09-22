@@ -1,6 +1,6 @@
 require 'yaml'
 class Crib
-  include Cardable
+  include Scorable
   def self.build_expected_values
     expected_values = {}
     Card.deck.combination(2).each do |crib_cards|

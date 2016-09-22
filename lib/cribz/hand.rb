@@ -1,7 +1,7 @@
 require_relative 'card'
-require_relative 'cardable'
+require_relative 'scorable'
 class Hand
-  include Cardable
+  include Scorable
 
   def expected_value(seen_cards = [])
     seen_cards = Hand.build_card_array(seen_cards)
