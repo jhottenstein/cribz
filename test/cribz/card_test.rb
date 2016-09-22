@@ -58,6 +58,7 @@ class CardTest < Test::Unit::TestCase
   def test_card_deck
     assert_equal 52, Card.deck.size
     assert_equal Card.new("AC"), Card.deck.first
+    assert_equal Card.new("KS"), Card.deck.last
   end
 
   def test_hash_and_eql_makes_array_ops_work

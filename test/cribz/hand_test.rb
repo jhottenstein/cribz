@@ -118,15 +118,20 @@ class HandTest < Test::Unit::TestCase
     assert_equal 0, hand.run_points(starter)
   end
 
-  def test_flush_points_without
+  def test_4_card_flush_points_with_starter
     hand = Hand.from_array(["JS", "2H", "8H", "9H"])
     starter = Card.new("QH")
     assert_equal 0, hand.flush_points(starter)
   end
-  def test_flush_points
+  def test_4_card_flush_points
     hand = Hand.from_array(["JH", "2H", "8H", "9H"])
     starter = Card.new("QS")
     assert_equal 4, hand.flush_points(starter)
+  end
+  def test_5_cardflush_points_with_starter
+    hand = Hand.from_array(["JH", "2H", "8H", "9H"])
+    starter = Card.new("QH")
+    assert_equal 5, hand.flush_points(starter)
   end
   def test_to_s
     hand = Hand.from_array(["JH", "2H", "8H", "9H"])
